@@ -31,6 +31,63 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
+            ┌──────────────────────┐
+            │      User (UI)       │
+            │  (Next.js Frontend)  │
+            └─────────┬────────────┘
+                      │
+                      │ Fill Customer Form
+                      ▼
+            ┌──────────────────────┐
+            │   Form Submission    │
+            │  (JSON Request)      │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   FastAPI Backend    │
+            │   (/predict API)     │
+            └─────────┬────────────┘
+                      │
+                      │ Load model.pkl & scaler.pkl
+                      ▼
+            ┌──────────────────────┐
+            │ Data Preprocessing   │
+            │ (Scaling + Encoding) │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   ML Model (LR)      │
+            │  Prediction + Prob   │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   API Response       │
+            │ {churn, probability} │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   Frontend Display   │
+            │ Result + UI Update   │
+            └─────────┬────────────┘
+                      │
+          ┌───────────┴────────────┐
+          │                        │
+          ▼                        ▼
+┌──────────────────┐    ┌──────────────────────┐
+│ Download Report  │    │ Store in Database    │
+│  (/generate-pdf) │    │   (Supabase)         │
+└─────────┬────────┘    └─────────┬────────────┘
+          │                        │
+          ▼                        ▼
+┌──────────────────┐    ┌──────────────────────┐
+│   PDF Generated  │    │  Save Prediction     │
+│  (ReportLab)     │    │  + Timestamp         │
+└──────────────────┘    └──────────────────────┘
+
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
