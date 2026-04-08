@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { 
   Moon, Sun, User, Zap, AlertTriangle, CheckCircle, 
   BarChart3, Activity, CreditCard, Phone, Wifi, Shield,
-  Tv, Film, HelpCircle, Users, Home, Loader2, Sparkles
+  Tv, Film, HelpCircle, Users, Home as HomeIcon, Loader2, Sparkles
 } from "lucide-react";
 
 interface PredictionResult {
